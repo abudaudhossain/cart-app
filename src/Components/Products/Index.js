@@ -7,6 +7,7 @@ const Products = () => {
         <div class="productContainer" id="lws-productContainer">
             <Product />
             <Product />
+            <Product /> 
         </div>
 
     )
