@@ -6,6 +6,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case ADDED: {
             const { id, name, quantity, price, category, image } = action.payload;
+
             if (quantity < 1) {
                 return [
                     ...state
@@ -30,17 +31,17 @@ const reducer = (state = initialState, action) => {
             return state.filter((product) => product.id !== action.payload)
         }
         case INCREMENT_QUANTITY: {
-            return state.map((product) => product.id === action.payload && {
+            return [...state.map((product) => product.id === action.payload ? {
                 ...product,
                 quantity: product.quantity + 1
-            })
+            } : {...product})]
         }
         case DECREMENT_QUANTITY: {
-            let cartItems = state.map(product => product.id === action.payload && {
+            let cartItems = state.map(product => product.id === action.payload ? {
                 ...product,
                 quantity: product.quantity - 1
-            })
-            return cartItems.filter((product) => product.quantity > 0)
+            } : { ...product })
+            return [...cartItems.filter((product) => product.quantity > 0)]
         }
         default:
             return state

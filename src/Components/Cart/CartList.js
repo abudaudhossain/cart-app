@@ -1,11 +1,16 @@
 import React from 'react'
 import CartCard from './CartCard'
+import { useSelector } from 'react-redux'
 
 const CartList = () => {
+    const cartItems = useSelector((state) => state.carts)
     return (
-        <div class="space-y-6">
+        <div className="space-y-6">
             {/* Cart Item */}
-            <CartCard />
+            {
+                cartItems.length > 0 ? cartItems.map((item, index) => <CartCard key={index} cart={item} />) : <h1>Cart Empty</h1>
+            }
+
             {/* Cart Items Ends */}
 
         </div>

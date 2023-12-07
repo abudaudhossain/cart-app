@@ -1,13 +1,17 @@
 import React from 'react'
 import Product from './Product'
+import { useSelector } from 'react-redux'
 
 const Products = () => {
+    const products = useSelector((state) => state.products);
+    console.log("Product: ", products)
     return (
 
-        <div class="productContainer" id="lws-productContainer">
-            <Product />
-            <Product />
-            <Product /> 
+        <div className="productContainer" id="lws-productContainer">
+            {
+                products.map((product, index) => <Product key={index} product={product} />)
+            }
+
         </div>
 
     )
